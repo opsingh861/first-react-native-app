@@ -7,6 +7,7 @@ const App = () => {
   return (
     <View>
       <Text> Hello World </Text>
+      <Button title="Click Me" onPress={() => alert('Button Clicked')} />
     </View>
   );
 }
