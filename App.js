@@ -1,21 +1,51 @@
 
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
-import exStyles from './styles';
+
 
 const App = () => {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [display, setDisplay] = useState(false);
+  const clear = () => {
+    setDisplay(false)
+    setName("")
+    setEmail("")
+    setPassword("")
+  }
   return (
     <View>
-      <Text style={{ fontSize: 30 }} >Your name is: {name}</Text>
-      <TextInput style={styles.textInput}
-        placeholder='Enter your name here'
+      <Text style={{ fontSize: 30 }}>Simple form in react native</Text>
+      <TextInput
+        style={styles.textInput}
         value={name}
-        onChangeText={text => setName(text)}
+        placeholder='Enter your name here'
+        onChangeText={(text) => setName(text)}
       />
-      <Button title="Clear Value" onPress={() => {
-        setName("");
-      }} />
+      <TextInput
+        style={styles.textInput} value={email}
+        placeholder='Enter your email here'
+        onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        style={styles.textInput} value={password}
+        placeholder='Enter your password here'
+        onChangeText={(text) => setPassword(text)}
+        secureTextEntry={true}
+      />
+      <Button title='show details'
+        onPress={() => setDisplay(true)} />
+      <View style={{ marginTop: 8 }}>
+        <Button color={"green"} title='clear details' onPress={clear} />
+      </View>
+      <View>
+        {display ? <View>
+          <Text>Your name is: {name}</Text>
+          <Text>Your email is: {email}</Text>
+          <Text>Your password is: {password}</Text>
+        </View> : null}
+      </View>
     </View>
   );
 }
@@ -23,9 +53,10 @@ const App = () => {
 const styles = StyleSheet.create({
   textInput: {
     font: 30,
-    color: "blue",
+    color: "black",
     borderWidth: 2,
     margin: 10,
+    borderColor: "blue"
   }
 })
 
