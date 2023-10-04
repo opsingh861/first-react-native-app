@@ -1,52 +1,58 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 
 const App = () => {
-  const list = [
+  const users = [
     { name: 'A', age: 20 },
     { name: 'B', age: 21 },
     { name: 'C', age: 22 },
     { name: 'D', age: 23 },
     { name: 'E', age: 24 },
     { name: 'F', age: 25 },
-    { name: 'G', age: 26 },
-    { name: 'H', age: 27 },
-    { name: 'I', age: 28 },
-    { name: 'J', age: 29 },
-    { name: 'K', age: 30 },
-    { name: 'L', age: 31 },
-    { name: 'M', age: 32 },
-    { name: 'N', age: 33 },
-    { name: 'O', age: 34 },
-    { name: 'P', age: 35 },
-    { name: 'Q', age: 36 },
-    { name: 'R', age: 37 },
+    { name: 'G', age: 26 }
   ]
   return (
     <View>
-      <Text style={{ fontSize: 20 }}>Grid with dynamic data</Text>
-      <View style={{flex:1,flexDirection:'row',flexWrap:'wrap'}}>
-        {list.map((item, index) => <Text key={index} style={styles.text}>{item.name}</Text>)}
-      </View>
-
+      <Text style={{ fontSize: 20 }}>Component in loop with FlatList</Text>
+      <FlatList
+        data={users}
+        renderItem={({ item }) => <UserData name={item.name} age={item.age} />}
+      />
     </View>
   );
 };
 
+const UserData = (props) => {
+  const item = props
+  return (
+    <View style={styles.box}>
+      <Text style={styles.text}>{item.name}</Text>
+      <Text style={styles.text}>{item.age}</Text>
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    color: 'red',
-    textAlign: 'center',
-    margin: 10,
-    fontWeight: 'bold',
-    backgroundColor: 'yellow',
+  box: {
+    flex: 1,
+    margin: 5,
     padding: 10,
-    width: 100,
-    height: 100,
+    borderWidth: 3,
+    borderRadius: 10,
+    borderColor: "yellow",
+    flexDirection: "row"
+
   },
+  text: {
+    color: "orange",
+    fontSize: 30,
+    borderColor: "yellow",
+    flex: 1,
+    textAlign: "center",
+
+  }
 })
 
 
