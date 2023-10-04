@@ -26,10 +26,11 @@ const App = () => {
   ]
   return (
     <View>
-      <Text style={{ fontSize: 20 }}>List in react native using map function</Text>
-      <ScrollView style={{marginBottom:30}}>
-        {list.map((item, index) => <Text key={index} style={styles.text}>{item.name} {item.age}</Text>)}
-      </ScrollView>
+      <Text style={{ fontSize: 20 }}>Grid with dynamic data</Text>
+      <View style={{flex:1,flexDirection:'row',flexWrap:'wrap'}}>
+        {list.map((item, index) => <Text key={index} style={styles.text}>{item.name}</Text>)}
+      </View>
+
     </View>
   );
 };
@@ -42,6 +43,9 @@ const styles = StyleSheet.create({
     margin: 10,
     fontWeight: 'bold',
     backgroundColor: 'yellow',
+    padding: 10,
+    width: 100,
+    height: 100,
   },
 })
 
