@@ -1,63 +1,33 @@
 
-import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import React from 'react';
+import { View, Text, Button, StyleSheet, TextInput, FlatList } from 'react-native';
 
 
 const App = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [display, setDisplay] = useState(false);
-  const clear = () => {
-    setDisplay(false)
-    setName("")
-    setEmail("")
-    setPassword("")
-  }
+  const list = [
+    { name: 'A', age: 20 },
+    { name: 'B', age: 21 },
+    { name: 'C', age: 22 },
+    { name: 'D', age: 23 },
+  ]
   return (
     <View>
-      <Text style={{ fontSize: 30 }}>Simple form in react native</Text>
-      <TextInput
-        style={styles.textInput}
-        value={name}
-        placeholder='Enter your name here'
-        onChangeText={(text) => setName(text)}
-      />
-      <TextInput
-        style={styles.textInput} value={email}
-        placeholder='Enter your email here'
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        style={styles.textInput} value={password}
-        placeholder='Enter your password here'
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry={true}
-      />
-      <Button title='show details'
-        onPress={() => setDisplay(true)} />
-      <View style={{ marginTop: 8 }}>
-        <Button color={"green"} title='clear details' onPress={clear} />
-      </View>
-      <View>
-        {display ? <View>
-          <Text>Your name is: {name}</Text>
-          <Text>Your email is: {email}</Text>
-          <Text>Your password is: {password}</Text>
-        </View> : null}
-      </View>
+      <FlatList 
+      data={list}
+      renderItem={({item})=><Text style={styles.text}>{item.name}</Text>} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  textInput: {
-    font: 30,
-    color: "black",
-    borderWidth: 2,
-    margin: 10,
-    borderColor: "blue"
-  }
+text: {
+  fontSize: 30,
+  color: 'red',
+  textAlign: 'center',
+  margin: 10,
+  fontWeight: 'bold',
+  backgroundColor: 'yellow',
+},
 })
 
 
