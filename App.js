@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { View, Text, StyleSheet, SectionList } from 'react-native';
-
+import ClassComponent from './ClassComponent';
 
 const App = () => {
   const users = [
@@ -13,14 +13,7 @@ const App = () => {
   ]
   return (
     <View>
-      <Text style={{ fontSize: 30 }}>Section List in react native</Text>
-      <SectionList
-        sections={users}
-        renderItem={({ item }) => <Text style={{ fontSize: 20, marginLeft:20 }}>{item}</Text>}
-        renderSectionHeader={({ section: { name } }) => (
-          <Text style={{fontSize:25,color:"blue"}}>{name}</Text>
-        )}
-      />
+      <ClassComponent />
     </View>
   );
 };
