@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 
 const App = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   return (
     <View>
@@ -18,6 +18,13 @@ const App = () => {
 };
 
 const Users = () => {
+  let i = setInterval(() => {
+    console.warn("Hey!")
+  }, 2000);
+
+  useEffect(() => {
+    return () => clearInterval(i) // this is componentDidUnMount
+  })
   return (
     <View>
       <Text style={{ fontSize: 30, color: "green" }}>User Component</Text>
