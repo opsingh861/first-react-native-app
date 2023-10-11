@@ -1,29 +1,28 @@
 
-import React from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native';
 
 
 const App = () => {
-
+  const [radioSelected, setRadioSelected] = useState(1);
   return (
     <View style={styles.main}>
-      <Text style={{ fontSize: 20 }}>Use of Touchable highlights</Text>
-      <TouchableHighlight onPress={() => console.warn("hello")}>
-        <Text style={styles.success}>Success</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.success, styles.primary]}>Primary</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.success, styles.info]}>Info</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.success, styles.warning]}>Warning</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={[styles.success, styles.error]}>Error</Text>
-      </TouchableHighlight>
-
+      <TouchableOpacity onPress={() => setRadioSelected(1)}>
+        <View style={styles.container}>
+          <View style={styles.button}>
+            {radioSelected == 1 ? <View style={styles.internal}></View> : null}
+          </View>
+          <Text style={styles.text}>Radio Button 1</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => setRadioSelected(2)}>
+        <View style={styles.container}>
+          <View style={styles.button}>
+            {radioSelected == 2 ? <View style={styles.internal}></View> : null}
+          </View>
+          <Text style={styles.text}>Radio Button 1</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -31,29 +30,36 @@ const App = () => {
 const styles = StyleSheet.create({
   main:
   {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  success: {
-    fontSize: 15,
-    backgroundColor: 'green',
-    color: 'white',
-    padding: 10,
-    borderRadius: 10,
-    textAlign: 'center',
-    margin: 10,
-    shadowColor: 'black',
-    shadowOpacity: 1,
-    elevation: 10,
-    shadowRadius: 10,
-    shadowOffset: { width: 10, height: 10 },
-    // hide the onPress black color effect 
-    underlayColor: 'transparent'
-  
+  button:
+  {
+    borderColor: 'blue',
+    borderWidth: 2,
+    height: 25,
+    width: 25,
+    borderRadius: 15,
+    marginRight: 5,
   },
-  error: { backgroundColor: 'red' },
-  warning: { backgroundColor: 'yellow' },
-  primary: { backgroundColor: 'blue' },
-  info: { backgroundColor: 'gray' },
+  container:
+  {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 8
+  },
+  internal: {
+    backgroundColor: 'blue',
+    height: 15,
+    width: 15,
+    borderRadius: 100,
+    margin: 3
+  },
+  text: {
+    color: 'blue'
+  }
 
 
 })
