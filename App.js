@@ -1,41 +1,61 @@
 
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 
 const App = () => {
 
   return (
-    <View style={styles.box}>
-      <View style={styles.box1}>
-        <View style={styles.box3}></View>
-        <View style={styles.box2}></View>
-        <View style={{ backgroundColor: "brown",flex:1 }}></View>
-      </View>
-      <View style={styles.box2}></View>
-      <View style={styles.box3}></View>
+    <View style={styles.main}>
+      <Text style={{ fontSize: 20 }}>Use of Touchable highlights</Text>
+      <TouchableHighlight onPress={() => console.warn("hello")}>
+        <Text style={styles.success}>Success</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.success, styles.primary]}>Primary</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.success, styles.info]}>Info</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.success, styles.warning]}>Warning</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={[styles.success, styles.error]}>Error</Text>
+      </TouchableHighlight>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  box: {
-    flex: 1,
+  main:
+  {
+    flex: 1
   },
-  box1: {
-    flex: 1,
-    backgroundColor: "blue",
-    flexDirection: 'row',
-    margin:5
+  success: {
+    fontSize: 15,
+    backgroundColor: 'green',
+    color: 'white',
+    padding: 10,
+    borderRadius: 10,
+    textAlign: 'center',
+    margin: 10,
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    elevation: 10,
+    shadowRadius: 10,
+    shadowOffset: { width: 10, height: 10 },
+    // hide the onPress black color effect 
+    underlayColor: 'transparent'
+  
   },
-  box2: {
-    flex: 1,
-    backgroundColor: "green"
-  },
-  box3: {
-    flex: 1,
-    backgroundColor: "yellow"
-  }
+  error: { backgroundColor: 'red' },
+  warning: { backgroundColor: 'yellow' },
+  primary: { backgroundColor: 'blue' },
+  info: { backgroundColor: 'gray' },
+
+
 })
 
 export default App;
