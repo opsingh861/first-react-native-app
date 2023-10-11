@@ -1,35 +1,41 @@
 
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 
 const App = () => {
-  const [show, setShow] = useState(true);
 
   return (
-    <View>
-      <Text style={{ fontSize: 30 }}>Show/Hide Component</Text>
-      <Button title='toggle button' onPress={() => setShow(!show)} />
-      {
-        show ? <Users /> : null
-      }
+    <View style={styles.box}>
+      <View style={styles.box1}>
+        <View style={styles.box3}></View>
+        <View style={styles.box2}></View>
+        <View style={{ backgroundColor: "brown",flex:1 }}></View>
+      </View>
+      <View style={styles.box2}></View>
+      <View style={styles.box3}></View>
     </View>
   );
 };
 
-const Users = () => {
-  let i = setInterval(() => {
-    console.warn("Hey!")
-  }, 2000);
-
-  useEffect(() => {
-    return () => clearInterval(i) // this is componentDidUnMount
-  })
-  return (
-    <View>
-      <Text style={{ fontSize: 30, color: "green" }}>User Component</Text>
-    </View>
-  )
-}
+const styles = StyleSheet.create({
+  box: {
+    flex: 1,
+  },
+  box1: {
+    flex: 1,
+    backgroundColor: "blue",
+    flexDirection: 'row',
+    margin:5
+  },
+  box2: {
+    flex: 1,
+    backgroundColor: "green"
+  },
+  box3: {
+    flex: 1,
+    backgroundColor: "yellow"
+  }
+})
 
 export default App;
