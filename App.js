@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Modal } from 'react-native';
 
 const App = () => {
 
 
-  const [show, setShow] = useState(false);
-  const loader = () => {
-    setShow(true);
-    setTimeout(() => {
-      setShow(false);
-    }, 3000);
-  }
+  const [show, setShow] = useState(true);
+
+
 
   return (
     <View style={styles.main}>
-      <ActivityIndicator size={'large'} color={'green'} animating={show}  /* only large small and medium supports in ios */ />
-      <ActivityIndicator size={60} color={'blue'} animating={show} />
-      <Button title='Load' onPress={loader} />
+      <Modal animationType='slide' transparent={true} visible={show}>
+        <View style={styles.outer}>
+          <View style={styles.inner}>
+            <Text style={styles.modalText}>How was your day?</Text>
+            <Button title='Close' onPress={() => setShow(false)} />
+          </View>
+        </View>
+      </Modal>
+      <Button title='Show Modal' onPress={() => setShow(true)} />
     </View>
   );
 };
@@ -24,9 +26,31 @@ const App = () => {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    justifyContent: "flex-end",
+    margin: 10,
+  },
+  outer: {
+    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
+  },
+  inner: {
+    backgroundColor: '#fff',
+    width: 300,
+    padding: 50,
+    borderRadius: 20,
+    shadowColor: 'black',
+    elevation: 5,
+    opacity: 1,
+    justifyContent:'center',
+
+
+  },
+  modalText:{
+    fontSize:20,
+    marginBottom:10
   }
+
 })
 
 export default App;
