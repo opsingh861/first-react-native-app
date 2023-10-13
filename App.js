@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, StatusBar, Button } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 
 const App = () => {
   const [hidden, sethidden] = useState(false);
   const [style, setstyle] = useState('default');
   return (
     <View style={styles.main}>
-      <StatusBar backgroundColor="blue" barStyle={style} hidden={hidden} />
-      <Button title="toggle" onPress={() => sethidden(!hidden)} />
-      <Button title="Show" onPress={() => setstyle('dark-content')} />
-      
+      <Text style={{ fontSize: 30 }}>Platform: {Platform.OS}</Text>
+      <Text style={{ fontSize: 30 }}>Version: {Platform.Version}</Text>
+      <Text style={{ fontSize: 30 }}>isTV: {Platform.isTV ? 'true' : 'false'}</Text>
+      {Platform.os == "android" ? <View style={styles.android}></View> : <View style={styles.ios}></View>}
+      <Text style={{ fontSize: 15 }}>{JSON.stringify(Platform)}</Text>
     </View>
   );
 };
@@ -19,6 +20,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     // alignItems: 'center'
+  },
+  android: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'blue'
+  },
+  ios: {
+    marginTop: 20,
+    width: 100,
+    height: 100,
+    backgroundColor: 'red'
   }
 })
 
